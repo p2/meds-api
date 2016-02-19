@@ -1,0 +1,6 @@
+env
+oddb2xml
+
+__pycache__
+*.pyc
+
