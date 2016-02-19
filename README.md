@@ -14,7 +14,12 @@ docker-machine create --driver virtualbox smeds
 docker-machine start smeds
 eval "$(docker-machine env smeds)"
 docker-compose up -d
+```
 
+Now you can login to the Couchbase admin interface and set up the database at [192.168.99.100:8091](http://192.168.99.100:8091).
+When the server is up, run the import:
+
+```bash
 brew install libcouchbase
 
 virtualenv -p python3 env

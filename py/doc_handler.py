@@ -10,6 +10,7 @@ class DocHandler(object):
 	
 	def __init__(self):
 		self.documents = []
+		self.num_handled = 0
 	
 	def addDocument(self, doc):
 		if doc is not None:
@@ -52,6 +53,7 @@ class CouchbaseDocHandler(DocHandler):
 	def _insertAndClear(self):
 		if len(self.documents) > 0:
 			self.cb.upsert_multi({d['_id']: d for d in self.documents}, format=self.fmt)
+			self.num_handled += len(self.documents)
 			self.documents.clear()
 	
 	def __str__(self):

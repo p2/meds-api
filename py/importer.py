@@ -35,10 +35,10 @@ def doRunImport(files, doc_handler):
 	# run files
 	for filepath, fileclass in files:
 		print('-->  Processing {} from {}'.format(filepath, fileclass))
+		doc_handler.num_handled = 0
 		file = fileclass(filepath)
 		file.handle_documents(doc_handler)
-	
-	doc_handler.finalize()
+		print('-->  Handled {} documents'.format(doc_handler.num_handled))
 	
 	print('->  Done')
 
@@ -86,5 +86,9 @@ if '__main__' == __name__:
 	# hardcode the files to import
 	files = [
 		('oddb2xml/oddb_article.xml', IF.ImportableArticleFile),
+		('oddb2xml/oddb_product.xml', IF.ImportableProductFile),
+		('oddb2xml/oddb_interaction.xml', IF.ImportableInteractionFile),
+		('oddb2xml/oddb_substance.xml', IF.ImportableSubstanceFile),
+		('oddb2xml/oddb_limitation.xml', IF.ImportableLimitationFile),
 	]
 	runImport(files, handler_type)
