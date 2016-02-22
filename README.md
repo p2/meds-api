@@ -7,6 +7,16 @@ The repo is set up to create a Docker image with Couchbase and import all data i
 Info on oddb2xml data: <http://www.ywesee.com/Oddb2xml/Bemerkungen>
 
 
+## API Calls
+
+### `/ean/{ean-13}`
+
+Retrieve all documents (products and articles) for the given EAN-13 code.
+
+
+## Installation
+
+
 ### Run Import
 
 ```bash
@@ -27,4 +37,13 @@ virtualenv -p python3 env
 pip install couchbase
 
 ./run_import.sh
+```
+
+### N1QL
+
+To start the N1QL console:
+
+```bash
+docker run -it couchbase /opt/couchbase/bin/cbq \
+-engine=http://$(docker-machine ip smeds):8093
 ```
