@@ -5,3 +5,14 @@ couchbase:
     - 8092:8092 
     - 8093:8093 
     - 11210:11210
+  volumes:
+    - ${PWD}/couchdata:/opt/couchbase/var
+clakech:
+  image: clakech/elastic-couchbase   # elasticsearch and elasticsearch-couchbase
+  ports:
+    - 9200:9200
+    - 9300:9300
+    - 9091:9091
+#   volumes:
+#     # - ${PWD}/esdata:/usr/share/elasticsearch/data
+#     - ${PWD}/esconfig:/usr/share/elasticsearch/config

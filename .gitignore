@@ -1,5 +1,8 @@
 env
 oddb2xml
+couchdata
+esdata
+esconfig
 
 __pycache__
 *.pyc
