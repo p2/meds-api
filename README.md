@@ -8,6 +8,17 @@ The repo is set up to run the full stack via [Docker][].
 
 ## API Calls
 
+### `/search/{term}`
+
+Query all documents for the given search term.
+Search is [performed by Elasticsearch][elastic-api-search] and this API endpoint accepts any Elasticsearch query.
+
+### `/suggest/{term}?lang=X`
+
+Suggest terms similar to the term given.
+Supported for `lang` currently are **d** and **f**, default is **d**.
+Suggestions are [performed by Elasticsearch][elastic-api-suggest].
+
 ### `/ean/{ean-13}`
 
 Retrieve all documents (products and articles) for the given EAN-13 code.
@@ -75,6 +86,11 @@ virtualenv -p python3 env
 pip install -r requirements.txt
 ```
 
+### Create Views
+
+Create a view named `gtin` in design document `gtin` to enable querying for EAN-13 codes.
+
+
 ## Import
 
 When the server is up, run the import:
@@ -98,6 +114,8 @@ docker run -it couchbase /opt/couchbase/bin/cbq \
 [Docker]: https://www.docker.com
 [docker-couchbase]: https://hub.docker.com/r/couchbase/server/
 [docker-elasticsearch-couchbase]: https://hub.docker.com/r/clakech/elastic-couchbase/
+[elastic-api-search]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html
+[elastic-api-suggest]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html
 [elasticsearch-couchbase]: https://github.com/couchbaselabs/elasticsearch-transport-couchbase
 [elasticsearch-couchbase-install]: http://developer.couchbase.com/documentation/server/4.1/connectors/elasticsearch-2.1/install-intro.html
 [elasticcouchbase-presentation]: http://www.couchbase.com/nosql-resources/presentations/couchbase-server-2.0-full-text-search-integration[3].html
