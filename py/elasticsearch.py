@@ -43,8 +43,9 @@ class ElasticHost(object):
 			raise Exception("No term provided")
 		url = "{}/_suggest".format(self.host)
 		
-		lang = 'd' if lang not in ['d', 'f'] else lang
-		field = 'doc.dscrd' if 'd' == lang else 'doc.dscrf'
+		lang = lang[:2]
+		lang = 'de' if lang not in ['de', 'fr'] else lang
+		field = 'doc.dscrd' if 'de' == lang else 'doc.dscrf'
 		query = {
 			'text': term,
 			'suggestion': {

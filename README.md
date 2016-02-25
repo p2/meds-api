@@ -1,7 +1,7 @@
 Swiss Meds API
 ==============
 
-Uses [oddb2xml][] to create Swiss drug XML files from various sources, then imports these into Couchbase, which replicates to ElasticSearch.
+Uses [oddb2xml][] to create Swiss drug XML files from various sources, then imports these into [Couchbase][], which replicates to [Elasticsearch][].
 A **Flask** app runs a web server with an API to retrieve information about medications.
 The repo is set up to run the full stack via [Docker][].
 
@@ -13,10 +13,10 @@ The repo is set up to run the full stack via [Docker][].
 Query all documents for the given search term.
 Search is [performed by Elasticsearch][elastic-api-search] and this API endpoint accepts any Elasticsearch query.
 
-### `/suggest/{term}?lang=X`
+### `/suggest/{term}?lang=xx`
 
 Suggest terms similar to the term given.
-Supported for `lang` currently are **d** and **f**, default is **d**.
+For `lang` you can currently use “**de**” or “**fr**”, default is “**de**”.
 Suggestions are [performed by Elasticsearch][elastic-api-suggest].
 
 ### `/ean/{ean-13}`
@@ -111,7 +111,9 @@ docker run -it couchbase /opt/couchbase/bin/cbq \
 
 
 [oddb2xml]: http://www.ywesee.com/Oddb2xml/Index
-[Docker]: https://www.docker.com
+[couchbase]: http://www.couchbase.com/nosql-databases/couchbase-server
+[elasticsearch]: https://www.elastic.co/products/elasticsearch
+[docker]: https://www.docker.com
 [docker-couchbase]: https://hub.docker.com/r/couchbase/server/
 [docker-elasticsearch-couchbase]: https://hub.docker.com/r/clakech/elastic-couchbase/
 [elastic-api-search]: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-uri-request.html
